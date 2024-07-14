@@ -1,16 +1,5 @@
 #![allow(unused)]
 fn main() {
-    // let mut array: [i32; 4] = [5; 4];
-
-    // array[1] = 1;
-    // array[2] = 2;
-
-    // assert_eq!([1, 2], &array[1..3]);
-
-    // // This loop prints: 0 1 2
-    // for x in array {
-    //     print!("{x} ");
-    // }
    for x in fizz_buzz(30) {
     println!("{x}")
    }
