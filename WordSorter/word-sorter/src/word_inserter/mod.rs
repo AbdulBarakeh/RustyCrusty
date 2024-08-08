@@ -4,7 +4,6 @@ use std::io::Write;
 
 pub fn insert_word(filepath: &str, text: &str) ->  Result<(), Error>{
     let mut file = OpenOptions::new()
-        .write(true)
         .append(true)
         .create(true)
         .open(filepath)?;

@@ -5,6 +5,12 @@ pub struct Timer {
     stop_time: Option<Instant>,
 }
 
+impl Default for Timer {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Timer{
 
     pub fn new() -> Self {
