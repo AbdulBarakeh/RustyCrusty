@@ -1,3 +1,4 @@
+use std::path::Path;
 use std::fs::OpenOptions;
 use std::io::Error;
 use std::io::Write;
@@ -17,7 +18,22 @@ pub fn sort_words(words: &[String]) {
             if first_char.is_alphanumeric() {
                 let filename = format!("files/output/{}.txt", first_char);
                 let text = format!("{}\n", word);
-                crate::word_inserter::insert_word(&filename, &text).expect("Insertion failed");
+                if Path::new(&filename).exists(){
+
+                    let res = crate::word_reader::read_words(&filename);
+                    match res {
+                        Err(e) => {
+                            println!("Reading failed {}", e);
+                        }
+                        Ok(e) => {
+                            if !&e.contains(&word){
+                                crate::word_inserter::insert_word(&filename, &text).expect("Insertion failed");
+                            }
+                        }
+                    }
+                }else{
+                    crate::word_inserter::insert_word(&filename, &text).expect("Insertion failed");
+                }
             } else {
                 println!("Skipping word with invalid starting character: {}", word);
             }
